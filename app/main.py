@@ -1,7 +1,6 @@
 import json
 import xml.etree.ElementTree as elementTree
 from abc import ABC
-from typing import Self
 
 
 class Book:
@@ -12,7 +11,7 @@ class Book:
 
 class Display(ABC):
     @staticmethod
-    def display(self: Self, book: Book) -> None:
+    def display(self, book: Book) -> None:
         self.book = book
         pass
 
@@ -29,7 +28,7 @@ class DisplayRevers(Display):
 
 class Print(ABC):
     @staticmethod
-    def print_book(self: Self, book: Book) -> None:
+    def print_book(self, book: Book) -> None:
         pass
 
 
@@ -47,7 +46,7 @@ class PrintReverse(Print):
 
 class Serializer(ABC):
     @staticmethod
-    def serialize(self: Self, book: Book) -> None:
+    def serialize(self, book: Book) -> None:
         pass
 
 
