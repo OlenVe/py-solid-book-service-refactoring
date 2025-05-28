@@ -1,9 +1,10 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 from app.book import Book
 
 
 class Display(ABC):
+    @abstractmethod
     def display(self, book: Book) -> None:
         self.book = book
         pass

@@ -5,7 +5,7 @@ from app.book import Book
 
 
 class Serializer(ABC):
-    def serialize(self, book: Book) -> None:
+    def serialize(self, book: Book) -> str:
         pass
 
 
