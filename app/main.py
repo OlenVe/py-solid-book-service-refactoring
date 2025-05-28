@@ -1,68 +1,7 @@
-import json
-import xml.etree.ElementTree as elementTree
-from abc import ABC
-
-
-class Book:
-    def __init__(self, title: str, content: str) -> None:
-        self.title = title
-        self.content = content
-
-
-class Display(ABC):
-    @staticmethod
-    def display(self, book: Book) -> None:
-        self.book = book
-        pass
-
-
-class DisplayRight(Display):
-    def display(self, book: Book) -> None:
-        print(book.content)
-
-
-class DisplayRevers(Display):
-    def display(self, book: Book) -> None:
-        print(book.content[::-1])
-
-
-class Print(ABC):
-    @staticmethod
-    def print_book(self, book: Book) -> None:
-        pass
-
-
-class PrintRight(Print):
-    def print_book(self, book: Book) -> None:
-        print(f"Printing the book: {book.title}...")
-        print(book.content)
-
-
-class PrintReverse(Print):
-    def print_book(self, book: Book) -> None:
-        print(f"Printing the book in reverse: {book.title}...")
-        print(book.content[::-1])
-
-
-class Serializer(ABC):
-    @staticmethod
-    def serialize(self, book: Book) -> None:
-        pass
-
-
-class SerializerJson(Serializer):
-    def serialize(self, book: Book) -> str:
-        return json.dumps({"title": book.title, "content": book.content})
-
-
-class SerializerXML(Serializer):
-    def serialize(self, book: Book) -> str:
-        root = elementTree.Element("book")
-        title = elementTree.SubElement(root, "title")
-        title.text = book.title
-        content = elementTree.SubElement(root, "content")
-        content.text = book.content
-        return elementTree.tostring(root, encoding="unicode")
+from app.book import Book
+from app.display import DisplayRight, DisplayRevers
+from app.serializer import SerializerJson, SerializerXML
+from app.print import PrintRight, PrintReverse
 
 
 def main(book: Book, commands: list[tuple[str, str]]) -> None | str:
